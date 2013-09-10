@@ -136,7 +136,7 @@ class ScenarioRunner():
         """
         self._init_origin_time()
 
-        print "Running scenario from file:", self.filename
+        print "Running scenario from file: " + self.filename
 
         for (tstmp, lineno, clb, args) in self._parse_scenario(self.filename):
             if clb not in self._callables:
@@ -166,7 +166,7 @@ class ScenarioRunner():
                 if cmd is not None:
                     yield cmd
         except EnvironmentError:
-            print >> sys.stderr, "Scenario file open/read error", filename
+            print >> sys.stderr, "Scenario file open/read error " + filename
 
     def _parse_scenario_line(self, lineno, line):
         """
@@ -204,7 +204,7 @@ class ScenarioRunner():
                     tuple(dic.get("args", "").split())
                 )
         else:
-            print >> sys.stderr, "Ignoring invalid scenario line", lineno
+            print >> sys.stderr, "Ignoring invalid scenario line " + lineno
 
         # line not for this peer or a parse error occurred
         return None
