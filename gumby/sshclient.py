@@ -149,12 +149,12 @@ class _CommandChannel(SSHChannel):
 
     def dataReceived(self, bytes_):
         # we could recv more than 1 line
-        for line in bytes_[:-1].replace("\r\n", "\n").split("\n"):
+        for line in bytes_.rstrip().splitlines():
             msg('SSH "%s" STDOUT: %s' % (self.command, line))
 
     def extReceived(self, _, bytes_):
         # we could recv more than 1 line
-        for line in bytes_[:-1].replace("\r\n", "\n").split("\n"):
+        for line in bytes_.rstrip().splitlines():
             msg('SSH "%s" STDERR: %s' % (self.command, line))
 
     def closed(self):
